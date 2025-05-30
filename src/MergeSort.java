@@ -1,56 +1,47 @@
-public class MergeSort {
-    /*
-    pseudocode
-    Merge(A[] , sol , orta , sag) {       // A dizisinin sol..orta ve orta+1..sag aralığını birleştir
 
-    n1 <- orta - sol + 1             // Sol alt dizinin uzunluğu
-    n2 <- sag - orta                 // Sağ alt dizinin uzunluğu
+/*
+Merge(A[] , sol , orta , sag)
 
-    SOL[] <- A[sol .. orta]          // Sol alt diziyi A dizisinden kopyala
-    SAG[] <- A[orta+1 .. sag]        // Sağ alt diziyi A dizisinden kopyala
+n1 <- orta - sol +1
+n2 <- sag - orta
 
-    i <- 0                           // SOL dizisi için başlangıç indisi
-    j <- 0                           // SAG dizisi için başlangıç indisi
-    k <- sol                         // A dizisinde sıralı elemanların yazılacağı yerin indisi
+Sol[] <- A[sol ... orta ]
+Sag[] <- A[orta + 1 ... sag ]
 
-    while (i < n1 and j < n2)        // Her iki dizide de eleman varken devam et
-        if SOL[i] <= SAG[j]          // Hangisi küçükse onu al
-            A[k] <- SOL[i]           // SOL'deki eleman küçükse A dizisine yaz
-            i <- i + 1               // SOL dizisinde bir sonraki elemana geç
-        else
-            A[k] <- SAG[j]           // Aksi halde SAG'deki eleman A dizisine yazılır
-            j <- j + 1               // SAG dizisinde bir sonraki elemana geç
+i <- 0
+j <- 0
+k <- sol
 
-        k <- k + 1                   // A dizisinde bir sonraki boş yere geç
-
-    while ( i < n1 )                 // SOL dizisinde kalan elemanlar varsa (SAG bitti)
-        A[k] <- SOL[i]               // Kalan elemanları A dizisine kopyala
+while( i <= n1 and j <= n2 )
+    if( Sol[i] < Sag[j] )
+        A[k] <- Sol [i]
         i <- i + 1
-        k <- k + 1
-
-    while ( j < n2 )                 // SAG dizisinde kalan elemanlar varsa (SOL bitti)
-        A[k] <- SAG[j]               // Kalan elemanları A dizisine kopyala
+    else
+        A[k] <- Sag[j]
         j <- j + 1
-        k <- k + 1
- }
-    */
-    /*
-    pseudecode
-    MergeSort(A , Sol , Sağ){
+  k <- k + 1
 
-    if sol >= sağ
-        dur
+while( i < n1 )
+    A[k] <- Sol[i]
+    i <- i + 1
+    k <- k + 1
 
-    orta <- (sag+sol) / 2
+while( j < n2 )
+    A[k] <- Sag[j]
+    j <- j + 1
+    k <- k + 1
+ */
 
-    MergeSort(A, Sol , orta )
-    MergeSort(A , orta+1 , sağ )
-    Merge(A, Sol ,orta, Sag)
-    }
+/*
+MergeSort(A[] , sol , sag )
+if(sol < sag ){
+    MergeSort(A[] , sol , orta )
+    MergeSort(A[] , orta + 1 , sag )
+    Merge( A[] , sol , orta , sag )
+}
+ */
 
-    */
-
-    // Merge Sort algoritması: diziyi böl ve sırala
+public class MergeSort {
     public static void mergeSort(int[] dizi, int sol, int sag) {
         if (sol < sag) {
             // Ortayı bul
@@ -131,3 +122,9 @@ public class MergeSort {
         yazdir(sayilar);
     }
 }
+
+
+
+
+
+
