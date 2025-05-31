@@ -1,62 +1,44 @@
 public class HeapSort {
-
-    // 1. Heapify: Alt ağaçları düzeltir (recursive)
     void heapify(int[] A, int n, int i) {
         int largest = i;            // Şu anki kök
         int left = 2 * i + 1;       // Sol çocuk
         int right = 2 * i + 2;      // Sağ çocuk
 
-        // Sol çocuk büyükse
         if (left < n && A[left] > A[largest])
             largest = left;
 
-        // Sağ çocuk daha büyükse
         if (right < n && A[right] > A[largest])
             largest = right;
 
-        // Eğer en büyük kök değilse, yer değiştir
         if (largest != i) {
             int temp = A[i];
             A[i] = A[largest];
             A[largest] = temp;
-
-            // Alt ağaç için heapify yap
             heapify(A, n, largest);
         }
     }
 
-    // 2. BuildHeap: Diziyi max-heap'e çevir
     void buildHeap(int[] A, int n) {
         for (int i = n / 2 - 1; i >= 0; i--) {
-            heapify(A, n, i);  // Yaprak olmayan tüm düğümler için
+            heapify(A, n, i);
         }
     }
 
-    // 3. HeapSort: Tüm sıralama işlemi
     void heapSort(int[] A) {
         int n = A.length;
-
-        buildHeap(A, n);  // İlk olarak max heap oluştur
-
-        // En büyükleri sırayla sona al
+        buildHeap(A, n);
         for (int i = n - 1; i >= 1; i--) {
-            // Kök (en büyük) ile son elemanı yer değiştir
             int temp = A[0];
             A[0] = A[i];
             A[i] = temp;
-
-            // Kalan kısmı yeniden heap'e çevir
             heapify(A, i, 0);
         }
     }
 
-    // Test metodu
     public static void main(String[] args) {
         int[] A = {12, 11, 13, 5, 6, 7};
-
         HeapSort sorter = new HeapSort();
         sorter.heapSort(A);
-
         System.out.println("Sıralı dizi:");
         for (int num : A) {
             System.out.print(num + " ");
