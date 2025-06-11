@@ -3,62 +3,58 @@ import java.util.List;
 
 public class LongestCommonSubSequence {
 
-    public static List<Integer> findLongestCommonSubsequence(int[] A, int[] B) {
-        List<Integer> longest = new ArrayList<>();
+    public static int enbuyukAltToplam(int[] A) {
+        int globalMaxToplam = Integer.MIN_VALUE;
 
         for (int i = 0; i < A.length; i++) {
-            for (int j = 0; j < B.length; j++) {
-                int k = i;
-                int l = j;
-                List<Integer> temp = new ArrayList<>();
+            int toplam = A[i];
+            int maxToplamI = A[i];
 
-                while (k < A.length && l < B.length && A[k] == B[l]) {
-                    temp.add(A[k]);
-                    k++;
-                    l++;
+            for (int j = i + 1; j < A.length; j++) {
+                toplam += A[j];
+                if (toplam > maxToplamI) {
+                    maxToplamI = toplam;
                 }
+            }
 
-                if (temp.size() > longest.size()) {
-                    longest = temp;
-                }
+            if (maxToplamI > globalMaxToplam) {
+                globalMaxToplam = maxToplamI;
             }
         }
 
-        return longest;
+        return globalMaxToplam;
     }
 
     public static void main(String[] args) {
-        int[] A = {5, 4, 3, 1, 2, -1, 6};
-        int[] B = {1, 2, -1, 3, 0, 0};
-
-        List<Integer> result = findLongestCommonSubsequence(A, B);
-        System.out.println("Longest Common Subsequence: " + result);
+        int[] dizi = {4, -1, 2, 1, -5, 4};
+        int sonuc = enbuyukAltToplam(dizi);
+        System.out.println("En büyük alt toplam: " + sonuc);
     }
 }
 
 
+
 /*
-Pseudo
+enbuyuk_alt_toplam(A[0..n-1])
+Girdi : n uzunluğunda bir A dizisi
+Çıktı : A’nın ardışık alt dizileri içinde toplamı en büyük olan alt dizinin toplamı
 
-    LongestCommonSubsequence(A[0..m-1], B[0..n-1]) {
-        longest ← emptyList                          // En uzun ortak alt diziyi tutacak liste
+    global_max_toplam ← -∞
 
-        for i ← 0 to m - 1
-            for j ← 0 to n - 1
-                k ← i
-                l ← j
-                temp ← emptyList                      // Geçici olarak eşleşen elemanları tutar
+    for i ← 0 to n - 1
+        toplam ← A[i]
+        max_toplam_i ← A[i]
 
-                while (k < m and l < n and A[k] == B[l])  // Elemanlar eşleştiği ve sınır dışına çıkılmadığı sürece
-                    append A[k] to temp               // Eşleşen elemanı geçici listeye ekle
-                    k ← k + 1                         // A dizisinde bir sonraki elemana geç
-                    l ← l + 1                         // B dizisinde bir sonraki elemana geç
+        for j ← i + 1 to n - 1
+            toplam ← toplam + A[j]
+            if toplam > max_toplam_i
+                max_toplam_i ← toplam
 
-                if length(temp) > length(longest)     // Eğer geçici eşleşme en uzun olandan uzunsa
-                    longest ← temp                    // longest listesini güncelle
+        if max_toplam_i > global_max_toplam
+            global_max_toplam ← max_toplam_i
 
-        return longest
-    }
+    return global_max_toplam
+
 */
 
 
