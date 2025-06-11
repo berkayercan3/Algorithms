@@ -44,19 +44,17 @@ public class QuickSort {
 /*
 QuickSort PseudoCode
 
-    Partition(A, Low , High ){      //Arayyi iki parçaya böleceğiz
-        pivot <- A[High]            //Bu bölme sırasında son değeri pivot olarak seçeceğiz
-        i <- Low -1                 //En düşük değerden bir öncesi yani aslında -1. indisi i değeri olarak seçeceğiz, i değeri bizim pivottan küçük oln low değerlerimiz için kalacak
+    Partition(A, low, high){
+    pivot ← A[high]         // Pivot: dizinin sonundaki eleman
+    i ← low - 1             // i: küçük elemanları yerleştireceğimiz bölgeyi takip eder
 
-    for ( j <- Low to High - 1 )    //j değerimiz de pivottan büyük olan high değerler için, ilk başta low indisten başlatıyoruz
-        if A[j] < pivot             //Pivottan küçük olan değerleri kontrol ediyoruz
-            i = i + 1               //Küçük olma durumunda i yi 1 arttırıyoruz ve yer açıyoruz ama 1. adımda i j ile aynı indise geleceği için bir değişiklik olmaz,
-                                        // fakat sonraki adımlarda j her seferinde değeri pivot ile kontrol edeceğği için eğer pivottan küçük olma durumu varsa i bir artarak arttığı
-            swap A[i] , A[j             //indisteki değer ile j yi swap eder bu sayede pivottan küçük olan ifadeleri low kısmına bölmüş oluruz
+    for j ← low to high - 1     // j: diziyi tarayan değişken
+        if A[j] < pivot         // Eğer eleman pivottan küçükse:
+            i ← i + 1
+            swap A[i], A[j]     // Küçüğü i bölgesine taşı (önlere koy)
 
-
-    swap A[i+1] , A[High]           //Bu yer değiştirmenin ardından artık array 2 ye bölündüğü için yen ipivot değerimiz Low arrayindan hemen sonra ilk boş olan yere geçer o nedenle i + 1
-    return i + 1                    // pivotun olduğu konumu return ettik
+    swap A[i+1], A[high]        // Pivotu doğru yerine koy (i+1'e)
+    return i + 1                // Yeni pivotun yeri
     }
 
     QuickSort(A, Low, High{
